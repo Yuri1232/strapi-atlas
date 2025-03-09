@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_nab_bar_navbars",
+  "info": {
+    "displayName": "Navbar",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "dropdown": {
+      "displayName": "Dropdown",
+      "type": "component",
+      "repeatable": true,
+      "component": "drop-down.dropdown"
+    }
+  }
+}

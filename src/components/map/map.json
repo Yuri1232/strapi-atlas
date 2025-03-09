@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_map_maps",
+  "info": {
+    "displayName": "Map",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "address": {
+      "type": "text"
+    },
+    "location_map_link": {
+      "type": "text"
+    }
+  }
+}

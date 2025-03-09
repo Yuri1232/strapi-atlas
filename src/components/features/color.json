@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_features_colors",
+  "info": {
+    "displayName": "Color",
+    "icon": "cube",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "color": {
+      "displayName": "color_name",
+      "type": "component",
+      "repeatable": true,
+      "component": "features.color-name"
+    }
+  }
+}

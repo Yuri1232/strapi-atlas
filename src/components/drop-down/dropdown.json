@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_drop_down_dropdowns",
+  "info": {
+    "displayName": "Dropdown",
+    "icon": "connector"
+  },
+  "options": {},
+  "attributes": {
+    "catagory": {
+      "type": "string"
+    }
+  }
+}
