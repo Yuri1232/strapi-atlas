@@ -34,6 +34,16 @@ export interface DropDownDropdown extends Schema.Component {
   };
 }
 
+export interface FeaturesAbout extends Schema.Component {
+  collectionName: 'components_features_abouts';
+  info: {
+    displayName: 'About';
+  };
+  attributes: {
+    description: Attribute.RichText;
+  };
+}
+
 export interface FeaturesColor extends Schema.Component {
   collectionName: 'components_features_colors';
   info: {
@@ -52,6 +62,40 @@ export interface FeaturesColorName extends Schema.Component {
     displayName: 'color_name';
   };
   attributes: {};
+}
+
+export interface FeaturesInformation extends Schema.Component {
+  collectionName: 'components_features_information';
+  info: {
+    displayName: 'Information';
+  };
+  attributes: {
+    about: Attribute.Component<'features.about'>;
+  };
+}
+
+export interface FeaturesRam extends Schema.Component {
+  collectionName: 'components_features_rams';
+  info: {
+    description: '';
+    displayName: 'Ram';
+    icon: 'connector';
+  };
+  attributes: {
+    size: Attribute.String;
+  };
+}
+
+export interface FeaturesStorage extends Schema.Component {
+  collectionName: 'components_features_storages';
+  info: {
+    description: '';
+    displayName: 'Storage';
+    icon: 'cog';
+  };
+  attributes: {
+    size: Attribute.String;
+  };
 }
 
 export interface MapMap extends Schema.Component {
@@ -96,8 +140,12 @@ declare module '@strapi/types' {
       'card.card': CardCard;
       'contact.contact': ContactContact;
       'drop-down.dropdown': DropDownDropdown;
+      'features.about': FeaturesAbout;
       'features.color': FeaturesColor;
       'features.color-name': FeaturesColorName;
+      'features.information': FeaturesInformation;
+      'features.ram': FeaturesRam;
+      'features.storage': FeaturesStorage;
       'map.map': MapMap;
       'nab-bar.navbar': NabBarNavbar;
       'social-media.social': SocialMediaSocial;

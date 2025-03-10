@@ -443,7 +443,9 @@ export interface ApiProductDetailProductDetail extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Blocks: Attribute.DynamicZone<['features.color']>;
+    Blocks: Attribute.DynamicZone<
+      ['features.color', 'features.ram', 'features.storage']
+    >;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::product-detail.product-detail',
@@ -451,6 +453,7 @@ export interface ApiProductDetailProductDetail extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    information: Attribute.Component<'features.information', true>;
     Photos: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

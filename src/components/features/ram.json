@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_features_rams",
+  "info": {
+    "displayName": "Ram",
+    "icon": "connector",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "size": {
+      "type": "string"
+    }
+  }
+}

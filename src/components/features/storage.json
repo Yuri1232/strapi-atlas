@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_features_storages",
+  "info": {
+    "displayName": "Storage",
+    "icon": "cog",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "size": {
+      "type": "string"
+    }
+  }
+}

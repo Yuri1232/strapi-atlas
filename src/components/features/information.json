@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_features_information",
+  "info": {
+    "displayName": "Information"
+  },
+  "options": {},
+  "attributes": {
+    "about": {
+      "displayName": "About",
+      "type": "component",
+      "repeatable": false,
+      "component": "features.about"
+    }
+  }
+}

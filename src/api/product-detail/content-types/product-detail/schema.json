@@ -26,8 +26,16 @@
     "Blocks": {
       "type": "dynamiczone",
       "components": [
-        "features.color"
+        "features.color",
+        "features.ram",
+        "features.storage"
       ]
+    },
+    "information": {
+      "displayName": "Information",
+      "type": "component",
+      "repeatable": true,
+      "component": "features.information"
     }
   }
 }
