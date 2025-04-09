@@ -1,15 +1,16 @@
 {
   "collectionName": "components_features_information",
   "info": {
-    "displayName": "Information"
+    "displayName": "Information",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "about": {
-      "displayName": "About",
-      "type": "component",
-      "repeatable": false,
-      "component": "features.about"
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
     }
   }
 }

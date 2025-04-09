@@ -362,6 +362,86 @@ export interface AdminUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCartCart extends Schema.CollectionType {
+  collectionName: 'carts';
+  info: {
+    description: '';
+    displayName: 'Cart';
+    pluralName: 'carts';
+    singularName: 'cart';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    customer: Attribute.Relation<
+      'api::cart.cart',
+      'manyToOne',
+      'api::customer.customer'
+    >;
+    product: Attribute.Relation<
+      'api::cart.cart',
+      'manyToOne',
+      'api::product.product'
+    >;
+    publishedAt: Attribute.DateTime;
+    quantity: Attribute.Integer;
+    status: Attribute.Boolean;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCustomerCustomer extends Schema.CollectionType {
+  collectionName: 'customers';
+  info: {
+    description: '';
+    displayName: 'Customer';
+    pluralName: 'customers';
+    singularName: 'customer';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    address: Attribute.Text;
+    carts: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::cart.cart'
+    >;
+    city: Attribute.String;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    Email: Attribute.String;
+    full_name: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    phone_number: Attribute.String;
+    products: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::product.product'
+    >;
+    slug: Attribute.UID<'api::customer.customer', 'phone_number'>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHomeHome extends Schema.SingleType {
   collectionName: 'homes';
   info: {
@@ -395,12 +475,6 @@ export interface ApiHomeHome extends Schema.SingleType {
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
-        };
-      }>;
-    contacts: Attribute.Component<'contact.contact', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
         };
       }>;
     createdAt: Attribute.DateTime;
@@ -443,9 +517,6 @@ export interface ApiProductDetailProductDetail extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Blocks: Attribute.DynamicZone<
-      ['features.color', 'features.ram', 'features.storage']
-    >;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::product-detail.product-detail',
@@ -454,7 +525,12 @@ export interface ApiProductDetailProductDetail extends Schema.CollectionType {
     > &
       Attribute.Private;
     information: Attribute.Component<'features.information', true>;
-    Photos: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    product_name: Attribute.String;
+    products: Attribute.Relation<
+      'api::product-detail.product-detail',
+      'oneToMany',
+      'api::product.product'
+    >;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
@@ -483,6 +559,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
     };
   };
   attributes: {
+    carts: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::cart.cart'
+    >;
     category: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -499,19 +580,26 @@ export interface ApiProductProduct extends Schema.CollectionType {
     discount: Attribute.Boolean &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: false;
+          localized: true;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<false>;
     discount_price: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+    features: Attribute.Component<'features.features'> &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: false;
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
         };
       }>;
     locale: Attribute.String;
@@ -523,17 +611,27 @@ export interface ApiProductProduct extends Schema.CollectionType {
     name: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: false;
+          localized: true;
         };
       }>;
     price: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: false;
+          localized: true;
         };
       }>;
+    product: Attribute.Relation<
+      'api::product.product',
+      'manyToOne',
+      'api::product-detail.product-detail'
+    >;
     publishedAt: Attribute.DateTime;
-    slug: Attribute.UID;
+    slug: Attribute.UID &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::product.product',
@@ -980,6 +1078,8 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::cart.cart': ApiCartCart;
+      'api::customer.customer': ApiCustomerCustomer;
       'api::home.home': ApiHomeHome;
       'api::product-detail.product-detail': ApiProductDetailProductDetail;
       'api::product.product': ApiProductProduct;

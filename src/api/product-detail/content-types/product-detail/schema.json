@@ -12,30 +12,20 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Photos": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "Blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "features.color",
-        "features.ram",
-        "features.storage"
-      ]
-    },
     "information": {
       "displayName": "Information",
       "type": "component",
       "repeatable": true,
       "component": "features.information"
+    },
+    "product_name": {
+      "type": "string"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "product"
     }
   }
 }

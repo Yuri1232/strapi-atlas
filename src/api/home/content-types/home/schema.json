@@ -68,17 +68,6 @@
           "localized": false
         }
       }
-    },
-    "contacts": {
-      "displayName": "Contact",
-      "type": "component",
-      "repeatable": true,
-      "component": "contact.contact",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
     }
   }
 }

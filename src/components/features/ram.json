@@ -1,14 +1,16 @@
 {
   "collectionName": "components_features_rams",
   "info": {
-    "displayName": "Ram",
-    "icon": "connector",
+    "displayName": "ram",
+    "icon": "oneToMany",
     "description": ""
   },
   "options": {},
   "attributes": {
     "size": {
-      "type": "string"
+      "type": "component",
+      "repeatable": true,
+      "component": "features.size"
     }
   }
 }

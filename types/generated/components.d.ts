@@ -37,18 +37,17 @@ export interface DropDownDropdown extends Schema.Component {
 export interface FeaturesAbout extends Schema.Component {
   collectionName: 'components_features_abouts';
   info: {
+    description: '';
     displayName: 'About';
   };
-  attributes: {
-    description: Attribute.RichText;
-  };
+  attributes: {};
 }
 
 export interface FeaturesColor extends Schema.Component {
   collectionName: 'components_features_colors';
   info: {
     description: '';
-    displayName: 'Color';
+    displayName: 'features';
     icon: 'cube';
   };
   attributes: {
@@ -59,18 +58,42 @@ export interface FeaturesColor extends Schema.Component {
 export interface FeaturesColorName extends Schema.Component {
   collectionName: 'components_features_color_names';
   info: {
+    description: '';
     displayName: 'color_name';
   };
-  attributes: {};
+  attributes: {
+    color: Attribute.String;
+    quality: Attribute.Boolean;
+    quantity: Attribute.String;
+    ram: Attribute.String;
+    storage: Attribute.String;
+  };
+}
+
+export interface FeaturesFeatures extends Schema.Component {
+  collectionName: 'components_features_features';
+  info: {
+    description: '';
+    displayName: 'Features';
+  };
+  attributes: {
+    color: Attribute.String;
+    quality: Attribute.Boolean;
+    quantity: Attribute.String;
+    ram: Attribute.String;
+    storage: Attribute.String;
+  };
 }
 
 export interface FeaturesInformation extends Schema.Component {
   collectionName: 'components_features_information';
   info: {
+    description: '';
     displayName: 'Information';
   };
   attributes: {
-    about: Attribute.Component<'features.about'>;
+    description: Attribute.RichText;
+    title: Attribute.String;
   };
 }
 
@@ -78,23 +101,32 @@ export interface FeaturesRam extends Schema.Component {
   collectionName: 'components_features_rams';
   info: {
     description: '';
-    displayName: 'Ram';
-    icon: 'connector';
+    displayName: 'ram';
+    icon: 'oneToMany';
   };
   attributes: {
-    size: Attribute.String;
+    size: Attribute.Component<'features.size', true>;
+  };
+}
+
+export interface FeaturesSize extends Schema.Component {
+  collectionName: 'components_features_sizes';
+  info: {
+    displayName: 'size';
+  };
+  attributes: {
+    model: Attribute.String;
   };
 }
 
 export interface FeaturesStorage extends Schema.Component {
   collectionName: 'components_features_storages';
   info: {
-    description: '';
-    displayName: 'Storage';
-    icon: 'cog';
+    displayName: 'storage';
+    icon: 'database';
   };
   attributes: {
-    size: Attribute.String;
+    size: Attribute.Component<'features.size', true>;
   };
 }
 
@@ -122,6 +154,23 @@ export interface NabBarNavbar extends Schema.Component {
   };
 }
 
+export interface ProductProduct extends Schema.Component {
+  collectionName: 'components_product_product_s';
+  info: {
+    description: '';
+    displayName: 'Product ';
+  };
+  attributes: {
+    category: Attribute.String;
+    discount: Attribute.Boolean;
+    discount_price: Attribute.String;
+    features: Attribute.Component<'features.features'>;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    name: Attribute.String;
+    price: Attribute.String;
+  };
+}
+
 export interface SocialMediaSocial extends Schema.Component {
   collectionName: 'components_social_media_socials';
   info: {
@@ -143,11 +192,14 @@ declare module '@strapi/types' {
       'features.about': FeaturesAbout;
       'features.color': FeaturesColor;
       'features.color-name': FeaturesColorName;
+      'features.features': FeaturesFeatures;
       'features.information': FeaturesInformation;
       'features.ram': FeaturesRam;
+      'features.size': FeaturesSize;
       'features.storage': FeaturesStorage;
       'map.map': MapMap;
       'nab-bar.navbar': NabBarNavbar;
+      'product.product': ProductProduct;
       'social-media.social': SocialMediaSocial;
     }
   }

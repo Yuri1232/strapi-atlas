@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_features_color_names",
+  "collectionName": "components_features_features",
   "info": {
-    "displayName": "color_name",
+    "displayName": "Features",
     "description": ""
   },
   "options": {},
@@ -9,13 +9,13 @@
     "color": {
       "type": "string"
     },
-    "ram": {
-      "type": "string"
-    },
     "storage": {
       "type": "string"
     },
     "quantity": {
+      "type": "string"
+    },
+    "ram": {
       "type": "string"
     },
     "quality": {

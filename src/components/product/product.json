@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_product_product_s",
+  "info": {
+    "displayName": "Product ",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "discount": {
+      "type": "boolean"
+    },
+    "discount_price": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "features": {
+      "displayName": "Features",
+      "type": "component",
+      "repeatable": false,
+      "component": "features.features"
+    }
+  }
+}

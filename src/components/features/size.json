@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_features_sizes",
+  "info": {
+    "displayName": "size"
+  },
+  "options": {},
+  "attributes": {
+    "model": {
+      "type": "string"
+    }
+  }
+}

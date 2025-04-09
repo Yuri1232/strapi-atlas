@@ -1,12 +1,9 @@
 {
   "collectionName": "components_features_abouts",
   "info": {
-    "displayName": "About"
+    "displayName": "About",
+    "description": ""
   },
   "options": {},
-  "attributes": {
-    "description": {
-      "type": "richtext"
-    }
-  }
+  "attributes": {}
 }

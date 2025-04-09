@@ -1,14 +1,15 @@
 {
   "collectionName": "components_features_storages",
   "info": {
-    "displayName": "Storage",
-    "icon": "cog",
-    "description": ""
+    "displayName": "storage",
+    "icon": "database"
   },
   "options": {},
   "attributes": {
     "size": {
-      "type": "string"
+      "type": "component",
+      "repeatable": true,
+      "component": "features.size"
     }
   }
 }
