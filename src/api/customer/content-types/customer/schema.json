@@ -12,30 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "phone_number": {
       "type": "string"
     },
     "full_name": {
-      "type": "string"
-    },
-    "Email": {
-      "type": "string"
-    },
-    "address": {
-      "type": "text"
-    },
-    "city": {
       "type": "string"
     },
     "slug": {

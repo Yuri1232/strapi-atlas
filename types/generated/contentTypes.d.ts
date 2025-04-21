@@ -362,6 +362,42 @@ export interface AdminUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAddressAddress extends Schema.CollectionType {
+  collectionName: 'addresses';
+  info: {
+    displayName: 'Address';
+    pluralName: 'addresses';
+    singularName: 'address';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    city: Attribute.String;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    customer: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'api::customer.customer'
+    >;
+    home_address: Attribute.String;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::address.address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCartCart extends Schema.CollectionType {
   collectionName: 'carts';
   info: {
@@ -408,13 +444,11 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    address: Attribute.Text;
     carts: Attribute.Relation<
       'api::customer.customer',
       'oneToMany',
       'api::cart.cart'
     >;
-    city: Attribute.String;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::customer.customer',
@@ -422,9 +456,7 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    Email: Attribute.String;
     full_name: Attribute.String;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     phone_number: Attribute.String;
     products: Attribute.Relation<
       'api::customer.customer',
@@ -1078,6 +1110,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::address.address': ApiAddressAddress;
       'api::cart.cart': ApiCartCart;
       'api::customer.customer': ApiCustomerCustomer;
       'api::home.home': ApiHomeHome;
