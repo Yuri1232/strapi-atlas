@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -19,19 +19,24 @@
       "type": "string"
     },
     "slug": {
-      "type": "uid",
-      "targetField": "phone_number"
+      "type": "uid"
     },
-    "products": {
+    "addresses": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::product.product"
+      "target": "api::address.address",
+      "mappedBy": "customer"
     },
     "carts": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::cart.cart",
       "mappedBy": "customer"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
     }
   }
 }

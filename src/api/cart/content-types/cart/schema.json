@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "customer": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::customer.customer",
-      "inversedBy": "carts"
-    },
     "product": {
       "type": "relation",
       "relation": "manyToOne",
@@ -29,6 +23,12 @@
     },
     "quantity": {
       "type": "integer"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "carts"
     }
   }
 }

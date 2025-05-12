@@ -365,6 +365,7 @@ export interface AdminUser extends Schema.CollectionType {
 export interface ApiAddressAddress extends Schema.CollectionType {
   collectionName: 'addresses';
   info: {
+    description: '';
     displayName: 'Address';
     pluralName: 'addresses';
     singularName: 'address';
@@ -383,10 +384,11 @@ export interface ApiAddressAddress extends Schema.CollectionType {
       Attribute.Private;
     customer: Attribute.Relation<
       'api::address.address',
-      'oneToOne',
+      'manyToOne',
       'api::customer.customer'
     >;
     home_address: Attribute.String;
+    phone_number: Attribute.String;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
@@ -441,9 +443,14 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     singularName: 'customer';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
+    addresses: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::address.address'
+    >;
     carts: Attribute.Relation<
       'api::customer.customer',
       'oneToMany',
@@ -463,7 +470,8 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'oneToMany',
       'api::product.product'
     >;
-    slug: Attribute.UID<'api::customer.customer', 'phone_number'>;
+    publishedAt: Attribute.DateTime;
+    slug: Attribute.UID;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::customer.customer',

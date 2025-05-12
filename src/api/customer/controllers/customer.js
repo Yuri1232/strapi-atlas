@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * customer controller
+ */
+
 const { createCoreController } = require("@strapi/strapi").factories;
 
 module.exports = createCoreController(
@@ -33,20 +37,12 @@ module.exports = createCoreController(
     },
     async findBySlug(ctx) {
       const { slug } = ctx.params;
-
-      const customers = await strapi.entityService.findMany(
-        "api::customer.customer",
-        {
-          filters: { slug },
-          populate: "image",
-        }
-      );
-
-      if (!customers || customers.length === 0) {
-        return ctx.notFound(`Customer with slug "${slug}" not found`);
-      }
-
-      return ctx.send(customers[0]);
+      const entity = await strapi.db.query("api::customer.customer").findOne({
+        where: { slug },
+        // Adjust this to include any related fields you need
+      });
+      const sanitizedEntity = await this.sanitizeOutput(entity);
+      return this.transformResponse(sanitizedEntity);
     },
     async create(ctx) {
       const { data } = ctx.request.body;

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "address",
     "pluralName": "addresses",
-    "displayName": "Address"
+    "displayName": "Address",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,8 +20,12 @@
     },
     "customer": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::customer.customer"
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "addresses"
+    },
+    "phone_number": {
+      "type": "string"
     }
   }
 }
